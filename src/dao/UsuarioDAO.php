@@ -47,6 +47,11 @@ class UsuarioDAO{
 		}
 		return $existe;
 	}
+	public function getIdUsuario($email){
+		$query = "select id from tb_usuario where email = '{$email}'";
+		$resultado = mysqli_fetch_assoc(mysqli_query($this->conexao, $query));
+		return md5($resultado['id']);
+	}
 
 
 

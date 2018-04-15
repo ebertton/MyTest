@@ -15,8 +15,6 @@ if ($_POST['opcao'] == 'cadastrar') {
 		$usuario->setEmail($_POST['email']);
 		$usuario->setUsuario($_POST['usuario']);
 		$usuario->setSenha($_POST['senha']);
-
 	
-	
-		print_r(json_encode($usuarioJson->gravarUsuario($usuario)));
+		print_r($usuarioJson->gravarUsuario($usuario));
 }	
