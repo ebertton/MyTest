@@ -52,6 +52,25 @@ class UsuarioDAO{
 		$resultado = mysqli_fetch_assoc(mysqli_query($this->conexao, $query));
 		return md5($resultado['id']);
 	}
+	public function ativarConta($id){
+		$usuarios = UsuarioDAO::listarUsuario();
+
+		for ($i=0; $i < count($usuarios) ; $i++) { 
+			if(md5($usuarios[$i]['id']) == $id){
+				$id_ativacao = $usuarios[$i]['id'];
+			}
+		}
+
+		$query = "update tb_usuario set ativo = true WHERE id = {$id_ativacao}";
+
+		if (mysqli_query($this->conexao, $query)) {
+			return true;
+		}else{
+			
+			return false;
+		}
+		
+	}
 
 
 

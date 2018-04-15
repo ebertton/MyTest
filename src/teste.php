@@ -33,4 +33,5 @@ require_once("dao/ConexaoDAO.php");
 $conexao = new ConexaoDAO();
 $usuarioDAO = new UsuarioDAO($conexao->getConexao());
 
-print_r($usuarioDAO->getIdUsuario('eberttonrodrigues@gmail.com'));
+$usuarios = $usuarioDAO->listarUsuario();
+print_r($usuarios[0]['id']);

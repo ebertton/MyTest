@@ -1,6 +1,11 @@
 $(document).ready(function(){
 	var form_usuario = $('#form_usuario');
 	var senha = $('#senha');
+	validarConta();
+
+
+	
+		
 
 $('a').on('click', function(e){
 	e.preventDefault();
@@ -8,6 +13,24 @@ $('a').on('click', function(e){
 	getPag(paginaRef);
 
 });
+
+function validarConta(){
+	var id_validacao =  getUrlVars();
+	if (id_validacao.id != undefined) {
+		$.ajax({
+			url: 'src/controller/UsuarioController.php?id='+ id_validacao.id +'&opcao=ativar',
+			data: 'GET',
+			dataType : 'json',
+			success: function(response){
+				//window.history.pushState("", "", "/teste");
+				alert(response.msg);	
+			}
+			
+
+		});	
+	}
+	
+}
 
 $('#btn-cadastrar-usuario').on('click', function(e){
 	e.preventDefault();
@@ -43,6 +66,7 @@ function getPag(paginaRef){
 		success: function(response){
 			
 			$('body').html(response);
+			window.history.pushState( paginaRef, '', '');
 		},
 		error: function( error ){
 			console.log('Pagina não carregada', error);
@@ -140,6 +164,19 @@ function tem_maiusculas(texto){
    }
    return 0;
 } 
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
 
 
 });

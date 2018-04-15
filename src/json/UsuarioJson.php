@@ -41,5 +41,17 @@ class UsuarioJson{
 			
 		}
 
+		public function ativarConta($id){
+			$conexao = new ConexaoDAO();
+			$usuarioDAO = new UsuarioDAO($conexao->getConexao());
+			if ($usuarioDAO->ativarConta($id)) {
+				$this->validacao = array('msg' => 'Conta ativada com sucesso');
+				return json_encode($this->validacao);
+			}else{
+				$this->validacao = array('msg' => 'Link invalido!');
+				return json_encode($this->validacao);
+			}
+		}
+
 	}
 	

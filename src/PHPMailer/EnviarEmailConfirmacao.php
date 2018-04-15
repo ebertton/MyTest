@@ -14,7 +14,7 @@ class EnviarEmailConfirmacao{
 		$mail->Username = 'myteste.mail.php@gmail.com';
 		$mail->Password = 'Abc.1234567';
 		$titulo = "E-mail de validação MyTeste";
-		$mensagem = "Validação de conta MyTeste. Para ativar sua conta clique no link: http://localhost/teste/confirmacao?id=" . $id;
+		$mensagem = "Validação de conta MyTeste. Para ativar sua conta clique no link: http://localhost/teste?id=" . $id;
 		$mail->setFrom("myteste.mail.php@gmail.com", "MyTeste");
 		$mail->addAddress($email_usuario);
 		$mail->Subject = $titulo;
@@ -23,7 +23,7 @@ class EnviarEmailConfirmacao{
 		if ($mail->send()) {
 			return "e-mail enviado com sucesso";
 		}else{
-			return "Fala ao tentat enviar email";
+			return "Fala ao tentar enviar email";
 		}
 	}
 
