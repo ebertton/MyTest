@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	var form_usuario = $('#form_usuario');
+	var senha = $('#senha');
 
 $('a').on('click', function(e){
 	e.preventDefault();
@@ -10,7 +11,21 @@ $('a').on('click', function(e){
 
 $('#btn-cadastrar-usuario').on('click', function(e){
 	e.preventDefault();
-	cadastrarUsuario();
+	if (senha.val().length >= 6) {
+		console.log("é maior");
+		if (!tem_maiusculas(senha.val())){
+			$('#msg').html("<h4 class='alert alert-danger'>A senha tem que ter pelo menos  uma letra maiuscula</h4>");
+		}else if (!tem_minusculas(senha.val())){
+			$('#msg').html("<h4 class='alert alert-danger'>A senha tem que ter pelo menos  uma letra minuscula</h4>");
+		}else if (!tem_numeros(senha.val())){
+			$('#msg').html("<h4 class='alert alert-danger'>A senha tem que ter pelo menos  um número</h4>");
+		}else{
+			cadastrarUsuario();
+		}
+	}
+	else {
+		$('#msg').html("<h4 class='alert alert-danger'>A senha tem que ter pelo menos  6 caracteres</h4>");
+	}
 
 });
 
@@ -37,7 +52,7 @@ function getPag(paginaRef){
 		}
 	});
 }
-var senha = $('#senha');
+
 var usuario_cadastrado;
 var msg_cadatro;
 function cadastrarUsuario(){
@@ -53,22 +68,11 @@ function cadastrarUsuario(){
 	
 
 			if (response.error) {
+				console.log(response)
 			
 				$('#msg').html("<h4 class='alert alert-danger'>" + response.error + "</h4>");
 
-			}if (senha.val().length < 6) {
-				console.log(senha.val().length)
-				$('#msg').html("<h4 class='alert alert-danger'>A senha tem que ter pelo menos  6 caracteres</h4>");
-			}if (senha.val().length >= '6') {
-				if (!tem_maiusculas(senha.val())){
-					$('#msg').html("<h4 class='alert alert-danger'>A senha tem que ter pelo menos  uma letra maiuscula</h4>");
-				}
-				if (!tem_minusculas(senha.val())){
-					$('#msg').html("<h4 class='alert alert-danger'>A senha tem que ter pelo menos  uma letra minuscula</h4>");
-				}
-				if (!tem_numeros(senha.val())){
-					$('#msg').html("<h4 class='alert alert-danger'>A senha tem que ter pelo menos  um número</h4>");
-				}
+			}
 				else{
 					$('#msg').hide();
 					window.setTimeout(function() {
@@ -76,7 +80,7 @@ function cadastrarUsuario(){
 						alert("O usuário "+ usuario_cadastrado + ", " + msg_cadatro);
 					}, 1000);
 				}
-			}
+			
 										
 			
 
