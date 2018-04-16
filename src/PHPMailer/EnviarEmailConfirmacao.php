@@ -1,5 +1,8 @@
-<?php 
-require_once("class.phpmailer.php");
+<?php
+
+
+require_once("PHPMailerAutoload.php");
+
 
 class EnviarEmailConfirmacao{
 
@@ -14,13 +17,19 @@ class EnviarEmailConfirmacao{
 		$mail->Username = 'myteste.mail.php@gmail.com';
 		$mail->Password = 'Abc.1234567';
 		$titulo = "E-mail de validação MyTeste";
-		$mensagem = "Validação de conta MyTeste. Para ativar sua conta clique no link: http://localhost/teste?id=" . $id;
+		$mensagem = "Validação de conta MyTeste. Para ativar sua conta clique no link: http://177.135.176.186/?id=" . $id;
 		$mail->setFrom("myteste.mail.php@gmail.com", "MyTeste");
 		$mail->addAddress($email_usuario);
 		$mail->Subject = $titulo;
 		$mail->msgHTML($mensagem);
-
-		if ($mail->send()) {
+		$mail->SMTPOptions = array(
+		    'ssl' => array(
+		        'verify_peer' => false,
+		        'verify_peer_name' => false,
+		        'allow_self_signed' => true
+		    )
+		);
+				if ($mail->send()) {
 			return "e-mail enviado com sucesso";
 		}else{
 			return "Fala ao tentar enviar email";

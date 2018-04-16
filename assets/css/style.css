@@ -19,4 +19,18 @@ body {
 	padding-top: 100px;
 	padding-left: 100px;
 }
+#msg_login{
+    text-align: center;
+}
+#msg_login img{
+  width: 40px;
+}
+#msg {
+    text-align: center;
+}
+#msg img{
+    width: 40px;
+}
+
+
 

@@ -6,16 +6,19 @@
     <form id="form_login">
       <input type="hidden" required="true" name="opcao" value="login">
       <div class="form-group">
-        <label for="usuario">Usuário</label>
-        <input required="true" type="text" class="form-control" id="usuario" name="usuario" placeholder="Informe o usuário">
+        <label for="usuario" class="col-sm-4">Usuário</label>
+        <input required="true" type="text" class="fcol-sm-12 form-control" id="usuario" name="usuario" placeholder="Informe o usuário">
       </div>
       <div class="form-group">
-        <label for="senha">Senha</label>
-        <input required="true" type="password" name="senha" class="form-control" id="senha" placeholder="Senha">
+        <label for="senha" class="col-sm-4">Senha</label>
+        <input required="true" type="password" name="senha" class="col-sm-12 form-control" id="senha" placeholder="Senha">
       </div>
-     
-      <button type="submit" id="btn-logar" class="btn btn-primary">Entrar</button>
-      <button class="btn btn-voltar">Voltar</button>
+     <div class="form-group">
+      <button type="submit" id="btn-logar" class="btn btn-success form-control">Entrar</button>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-info form-control btn-voltar">Voltar</button>
+    </div>
     </form>
     
   </div>

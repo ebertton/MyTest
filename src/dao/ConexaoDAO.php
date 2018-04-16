@@ -6,7 +6,7 @@ class ConexaoDAO {
 
 public function getConexao(){
 
-	$conexao = mysqli_connect('localhost', 'root', '','mytest');
+	$conexao = mysqli_connect('localhost', 'root', '','myteste');
 
 	if (!$conexao) {
 		die('Erro de conexão');

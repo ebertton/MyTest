@@ -1,8 +1,9 @@
 <?php require_once("principal/header.php"); ?>
 <div class="card card-width mx-auto">
-  <div id="msg"></div>
+  
   <div class="card-header text-white bg-primary ">Cadastro</div>
   <div class="card-body">
+    <div id="msg"></div>
     <form id="form_usuario" method="post" action="src/controller/UsuarioController.php">
       <div class="form-group">
         <input type="hidden" name="opcao" value="cadastrar">     
@@ -23,11 +24,14 @@
         <input type="password" required="true" class="form-control" id="senha" name="senha" placeholder="Senha">
       </div>
 
-     
-      <button type="submit" class="btn btn-primary" id="btn-cadastrar-usuario">Cadastrar</button>
-      <button class="btn btn-voltar" >Voltar</button>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="btn-cadastrar-usuario">Cadastrar</button>
+        <button class="btn btn-voltar" >Voltar</button>
+      </div>
+
     </form>
   </div>
+
 </div>
 <?php 
 require_once("principal/footer.php");

@@ -5,19 +5,10 @@ $(document).ready(function(){
 	var senha = $('#senha');
 	
 	validarConta();		
-$('#logout').on('click', function(e){
+$('#inicio').on('click', function(e){
 	e.preventDefault();
-	$.ajax({
-		url: 'src/controller/UsuarioController.php?opcao=logout',
-		type: 'GET',
-		dataType: 'json',
-		success: function(response){
-				getPag('index.php');
-				//window.history.pushState( '/teste/index.php', '', '/teste');
-		}
-
-	});
-
+	var paginaRef = $(this).attr('href');
+	getPag(paginaRef);
 });
 
 
@@ -64,14 +55,14 @@ function autenticar(){
 		dataType: 'json',
 		data: form_login.serialize(),
 		beforeSend : function(){
-			msg_login.html('<img src="/img/ajax-loader.gif" />', 5000);
+			msg_login.html('<img src="assets/img/ajax-loader.gif" />', 1000);
 		},
 		success: function(response){
 			if (response.validar == 'true'){
 				msg_login.append("<h4 class='alert alert-success'>Logado com sucesso!</h4>");
 				
 				getPag('perfil.php');
-				window.history.pushState( '', '', '/teste/perfil.php?usuario='+ response.id);
+				window.history.pushState( '', '', '/perfil.php?usuario='+ response.id);
 
 			}else{
 				msg_login.html("<h4 class='alert alert-danger'>Usuário ou senha inválido!</h4>");
@@ -89,7 +80,7 @@ function validarConta(){
 			type: 'GET',
 			dataType : 'json',
 			success: function(response){
-				window.history.pushState("", "", "/teste/");
+				window.history.pushState("", "", "/");
 				alert(response.msg);	
 			}
 			
@@ -108,7 +99,7 @@ function getPag(paginaRef){
 		beforeSend : function(){
 			var url =  getUrlVars();
 			if (url.usuario != undefined) {
-				window.history.pushState("", "", "teste");	
+				window.history.pushState("", "", "/");	
 			}
 		},
 		success: function(response){
@@ -134,6 +125,11 @@ function cadastrarUsuario(){
 		type: "POST",
 		dataType : 'json',
 		data: form_usuario.serialize(),
+		beforeSend: function(){
+		
+			$('#msg').html('<img src="assets/img/ajax-loader.gif" />', 1000);
+
+		},
 		success: function(response){
 			console.log(response);
 			usuario_cadastrado = response.usuario;
@@ -148,10 +144,10 @@ function cadastrarUsuario(){
 			}
 				else{
 					$('#msg').hide();
-					window.setTimeout(function() {
-	    				getPag('index.php');
-						alert("O usuário "+ usuario_cadastrado + ", " + msg_cadatro);
-					}, 100);
+					
+	    			getPag('index.php');
+					alert("O usuário "+ usuario_cadastrado + ", " + msg_cadatro);
+					
 				}
 			
 										

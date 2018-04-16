@@ -10,7 +10,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-oculta">
 		<div class="container">
-	    	<a class="navbar-brand" href="index.php">Inicio</a>
+	    	<a class="navbar-brand" id="inicio" href="index.php">Inicio</a>
 		</div>
 	</nav>
 	<div class="container">
