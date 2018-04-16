@@ -19,5 +19,16 @@ if (isset($_POST['opcao']) && $_POST['opcao'] == 'cadastrar') {
 		print_r($usuarioJson->gravarUsuario($usuario));
 }
 if (isset($_GET['opcao']) && $_GET['opcao'] == 'ativar') {
+
 	print_r($usuarioJson->ativarConta($_GET['id']));
-}	
+}
+if (isset($_POST['opcao']) && $_POST['opcao'] == 'login') {
+
+	print_r($usuarioJson->autenticaUsuario($_POST['usuario'], $_POST['senha']));
+}
+if(isset($_GET['opcao']) && $_GET['opcao'] == 'perfil'){	
+	print_r($usuarioJson->getPerfil($_GET['usuario']));
+
+}
+
+

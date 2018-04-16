@@ -1,6 +1,6 @@
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding: 0px;
+  margin: 0px;
   background-color: #eee;
 }
 .opcao-entrar{
@@ -11,3 +11,12 @@ body {
 .card-width{
 	max-width: 30rem;
 }
+.navbar-oculta{
+	display: none;
+}
+.msg-perfil{
+	text-align: center;
+	padding-top: 100px;
+	padding-left: 100px;
+}
+

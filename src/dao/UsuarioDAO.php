@@ -69,9 +69,40 @@ class UsuarioDAO{
 			
 			return false;
 		}
-		
 	}
 
+	public function verificaUsuarioCadastrado($usuario, $senha){
+		$senha = md5($senha);
+		$query = "select * from tb_usuario as u where u.usuario = '{$usuario}' and u.senha = '{$senha}'";
+		$usuario = array();
+		$resultado = mysqli_query($this->conexao, $query);
+		if (mysqli_query($this->conexao, $query)) {
+			$usuario = mysqli_fetch_assoc($resultado);
+		}
+
+		
+
+		if (isset($usuario) && $usuario['ativo'] == true) {
+			return $usuario;
+		}else{
+			return false;
+		}
+
+	}
+	public function carregarDadosPerfil($id){
+		
+		$query = "select * from tb_usuario as u where u.id = '{$id}'";
+	
+		$resultado = mysqli_query($this->conexao, $query);
+		$usuario = mysqli_fetch_assoc($resultado);
+
+		if (isset($usuario)) {
+			return $usuario;
+		}else{
+			return false;
+		}
+
+	}
 
 
 }

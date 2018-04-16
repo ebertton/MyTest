@@ -52,6 +52,41 @@ class UsuarioJson{
 				return json_encode($this->validacao);
 			}
 		}
+		public function autenticaUsuario($usuario, $senha){
+			$conexao = new ConexaoDAO();
+			$usuarioDAO = new UsuarioDAO($conexao->getConexao());
+			$usuario = $usuarioDAO->verificaUsuarioCadastrado($usuario, $senha);
+			
+			if (isset($usuario['id'])) {
+				$this->validacao = array('validar' => 'true', 'id' => $usuario['id']);
+				return json_encode($this->validacao);
+
+			}else{
+				$this->validacao = array('validar' => 'false');
+				return json_encode($this->validacao);
+			}
+		}
+
+		public function getPerfil($id){
+			$conexao = new ConexaoDAO();
+			$usuarioDAO = new UsuarioDAO($conexao->getConexao());
+			$usuario = array();
+			$usuario = $usuarioDAO->carregarDadosPerfil($id);
+			$img = UsuarioJson::getAvatar($usuario['email']);
+			$usuario['img'] = $img;
+		
+			return json_encode($usuario);
+			
+		}
+		public	function getAvatar($email) {
+		    $email   = $email; 
+		    $default = ''; 
+		    $size    = 200; 
+		    $grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) .
+		    "?d=" . urlencode( $default ) . "&s=" . $size;
+		
+		    return $grav_url;
+		}
 
 	}
 	

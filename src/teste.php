@@ -1,37 +1,27 @@
 <?php 
-// require_once("PHPMailer/class.phpmailer.php");
 
-// $email = new PHPMailer();
-// $email->CharSet = 'UTF-8';
-// $email->isSMTP();
-// $email->Host = 'smtp.gmail.com';
-// $email->Port = 587;
-// $email->SMTPSecure = 'tls';
-// $email->SMTPAuth = true;
-// $email->Username = 'myteste.mail.php@gmail.com';
-// $email->Password = 'Abc.1234567';
+function getAvatar() {
+    $email   = 'ebertton@gmail.com'; // e-mail de cadastro para pegar as imagens
+    $default = ''; // imagem alternativa para se não existir
+    $size    = 200; // tamanho da imagem
+    $grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) .
+    "?d=" . urlencode( $default ) . "&s=" . $size;
+    return $grav_url;
+}
 
-// $titulo = "E-mail de validação MyTeste";
-// $mensagem = "Validação de conta MyTeste. Para ativar sua conta clique no link: teste.com";
-
-// $email->setFrom("myteste.mail.php@gmail.com", "MyTeste");
-// $email->addAddress('eberttonrodrigues@gmail.com');
-// $email->Subject = $titulo;
-// $email->msgHTML($mensagem);
+$teste = getAvatar();
 
 
 
-// if ($email->send()) {
-// 	print_r("e-mail enviado com sucesso");
-// }else{
-// 	print_r("Fala ao tentat enviar email");
-// }
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<img src="<?php echo $teste; ?>" alt="" />
+</body>
+</html>
 
-require_once("dao/UsuarioDAO.php");
-require_once("dao/ConexaoDAO.php");
 
-$conexao = new ConexaoDAO();
-$usuarioDAO = new UsuarioDAO($conexao->getConexao());
-
-$usuarios = $usuarioDAO->listarUsuario();
-print_r($usuarios[0]['id']);
